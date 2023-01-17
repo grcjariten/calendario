@@ -1,6 +1,7 @@
 import 'package:calendario/calendar.dart';
 import 'package:flutter/material.dart';
 import 'ui/functions.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -11,13 +12,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DateTime? _selectedDay;
-
+  CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _focusedDay = DateTime.now();
 
-  callback(DateTime selected, DateTime focused) {
+  _selectedDayCallback(DateTime selected, DateTime focused) {
     setState(() {
       _selectedDay = selected;
       _focusedDay = focused;
+    });
+  }
+
+  _formatChangedCallback(CalendarFormat format) {
+    setState(() {
+      _calendarFormat = format;
     });
   }
   @override
@@ -27,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: calendarButton(),
       body: Column(
         children: [
-          myCalendar(_selectedDay, _focusedDay, callback),
+          myCalendar(_calendarFormat, _selectedDay, _focusedDay, _selectedDayCallback, _formatChangedCallback),
         ],
       ),
     );
