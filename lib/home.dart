@@ -15,17 +15,22 @@ class _MyHomePageState extends State<MyHomePage> {
   CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _focusedDay = DateTime.now();
 
+  //Quando viene cliccato un giorno, esso viene selezionato
   _selectedDayCallback(DateTime selected, DateTime focused) {
     setState(() {
       _selectedDay = selected;
       _focusedDay = focused;
     });
   }
-
+  //Quando viene cliccato il formato del calendario, esso cambia
   _formatChangedCallback(CalendarFormat format) {
     setState(() {
       _calendarFormat = format;
     });
+  }
+  //Quando viene cambiato mese e viene eseguita l'interfaccia, essa non resetta il calendario al mese iniziale
+  _onPageChangedCallback(DateTime newMonth) {
+    _focusedDay = newMonth;
   }
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: calendarButton(),
       body: Column(
         children: [
-          myCalendar(_calendarFormat, _selectedDay, _focusedDay, _selectedDayCallback, _formatChangedCallback),
+          myCalendar(_calendarFormat, _selectedDay, _focusedDay, _selectedDayCallback, _formatChangedCallback, _onPageChangedCallback),
         ],
       ),
     );
