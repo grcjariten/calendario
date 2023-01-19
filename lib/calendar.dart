@@ -1,9 +1,12 @@
 import 'package:table_calendar/table_calendar.dart';
+import 'ui/functions.dart';
 
 TableCalendar myCalendar(
     CalendarFormat calendarFormat,
+
     DateTime? selectedDay,
     DateTime focusedDay,
+
     Function onDaySelectedCallback,
     Function formatChangedCallback,
     Function onPageChangedCallback,
@@ -14,8 +17,6 @@ TableCalendar myCalendar(
     lastDay: DateTime.utc(2040, 01, 16),
 
 
-
-
   selectedDayPredicate:
       (day) {
     return isSameDay(selectedDay, day);
@@ -24,13 +25,15 @@ TableCalendar myCalendar(
   onDaySelected: (selected, focused) {
       onDaySelectedCallback(selected, focused);
   },
-//Anche questo, appena viene cliccato sul formato, esso cambia:
   calendarFormat: calendarFormat,
       onFormatChanged: (format) {
       formatChangedCallback(format);
       },
   onPageChanged: (newMonth) {
       onPageChangedCallback(newMonth);
+  },
+  eventLoader: (day) {
+      return getEventsForDay(day, foods);
   },
   );
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'ui/functions.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -14,6 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime? _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _focusedDay = DateTime.now();
+
 
   //Quando viene cliccato un giorno, esso viene selezionato
   _selectedDayCallback(DateTime selected, DateTime focused) {
