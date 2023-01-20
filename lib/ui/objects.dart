@@ -25,3 +25,7 @@ class Food {
   }
 }
 
+List<Food> foods= [
+  Food(1, "Banana e Mango", DateTime.parse("2023-01-19 00:00:00.000Z")),
+  Food(2, "Beans", DateTime.parse("2023-01-18 00:00:00.000Z")),
+];

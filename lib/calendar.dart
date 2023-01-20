@@ -1,5 +1,6 @@
 import 'package:table_calendar/table_calendar.dart';
 import 'ui/functions.dart';
+import 'ui/objects.dart';
 
 TableCalendar myCalendar(
     CalendarFormat calendarFormat,
@@ -7,6 +8,7 @@ TableCalendar myCalendar(
     DateTime? selectedDay,
     DateTime focusedDay,
 
+    List<Food> foods,
     Function onDaySelectedCallback,
     Function formatChangedCallback,
     Function onPageChangedCallback,

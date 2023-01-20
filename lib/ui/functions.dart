@@ -7,10 +7,6 @@ FloatingActionButton calendarButton() {
   );
 }
 
-List<Food> foods= [
-  Food(1, "Banana e Mango", DateTime.parse("2023-01-18 00:00:00.000Z")),
-  Food(2, "Beans", DateTime.parse("2023-01-18 00:00:00.000Z")),
-];
 
 // Here you'll probably choose to create a more general list, not just <Food>
 List<Food> getEventsForDay(DateTime day, List<Food> foods) {
@@ -24,4 +20,22 @@ List<Food> events = [];
 }
 
 
+//This will create the list from _selectedEvents
+Widget buildList(List<dynamic> events, BuildContext context, Function callback) {
 
+      return ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: events.length,
+        itemBuilder: (context, index) {
+          return ListTile(title: Text(events[index].foodValue),
+          trailing: IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              callback(events, index);
+            },
+          ),
+          );
+        },
+      );
+}
