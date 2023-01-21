@@ -6,8 +6,10 @@ import 'ui/objects.dart';
 
 
 
+
+
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -19,31 +21,33 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime _focusedDay = DateTime.now();
   List _filteredEvents = [];
 
-  //TEMPORARY: When I wanna change a food
+  //TODO: TEMPORARY to change the food list (creating a local db)
   _selectedAddCallback(List events, int index) {
     setState(() {
-      events[index].foodValue = "Ciccio";
+      events[index].foodValue = "Carrots";
     });
   }
 
-  //Quando viene cliccato un giorno, esso viene selezionato
+  //Changing the day selected
   _selectedDayCallback(DateTime selected, DateTime focused) {
     setState(() {
-      _selectedDay = selected; //seleziona il giorno
+      _selectedDay = selected; //select the day
       _focusedDay = focused;
-      _filteredEvents = getEventsForDay(selected, foods); // assegna gli eventi giornalieri alla lista
+      _filteredEvents = getEventsForDay(selected, foods); // gets the daily events and create a list
     });
   }
-  //Quando viene cliccato il formato del calendario, esso cambia
+  //Changing the calendar format
   _formatChangedCallback(CalendarFormat format) {
     setState(() {
       _calendarFormat = format;
     });
   }
-  //Quando viene cambiato mese e viene eseguita l'interfaccia, essa non resetta il calendario al mese iniziale
+  //Changing the format preventing to reset to the initial page everytime you rebuild the interface
   _onPageChangedCallback(DateTime newMonth) {
     _focusedDay = newMonth;
   }
+
+
 
   @override
   Widget build(BuildContext context) {
