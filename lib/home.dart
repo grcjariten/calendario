@@ -1,4 +1,5 @@
 import 'package:calendario/calendar.dart';
+import 'package:calendario/ui/databasehelper.dart';
 import 'package:flutter/material.dart';
 import 'ui/functions.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -20,13 +21,15 @@ class _MyHomePageState extends State<MyHomePage> {
   CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _focusedDay = DateTime.now();
   List _filteredEvents = [];
+  DatabaseHelper db = DatabaseHelper();
+  List<Food> foods = [];
 
-  //TODO: TEMPORARY to change the food list (creating a local db)
-  _selectedAddCallback(List events, int index) {
-    setState(() {
-      events[index].foodValue = "Carrots";
-    });
-  }
+  // //TODO: TEMPORARY to change the food list (creating a local db)
+  // _selectedAddCallback(List events, int index) {
+  //   setState(() {
+  //     events[index].foodValue = "Carrots";
+  //   });
+  // }
 
   //Changing the day selected
   _selectedDayCallback(DateTime selected, DateTime focused) {
@@ -35,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _focusedDay = focused;
       _filteredEvents = getEventsForDay(selected, foods); // gets the daily events and create a list
     });
+    print(selected);
   }
   //Changing the calendar format
   _formatChangedCallback(CalendarFormat format) {
@@ -47,18 +51,39 @@ class _MyHomePageState extends State<MyHomePage> {
     _focusedDay = newMonth;
   }
 
+  _insertZucchini(DateTime selected) {
+    print(1);
+    Food zucchini = Food("zucchini", selected);
+    zucchini.foodValue = "zucchini";
+    zucchini.dateTime = selected;
+    setState(() {
+      print(2);
 
+      db.insertFood(zucchini).then((newId) {
+        zucchini.id = newId;
+        print("zucchini was inserted in the database with the id: $newId");
+      }
+
+      );
+    });
+  }
+
+  @override
+  void didChangeDependencies() async {
+    foods = await db.fetchFoods();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.pinkAccent[300],
-      floatingActionButton: calendarButton(),
+      floatingActionButton: calendarButton(_selectedDay, _insertZucchini),
       body: Column(
         children: [
           myCalendar(_calendarFormat, _selectedDay, _focusedDay, foods, _selectedDayCallback, _formatChangedCallback, _onPageChangedCallback),
           const SizedBox(height: 8.0),
-          buildList(_filteredEvents, context, _selectedAddCallback)
+          buildList(_filteredEvents, context)
         ],
       ),
     );

@@ -27,13 +27,16 @@ class DatabaseHelper {
   }
 
 
-  Future<void> insertFood(Food food) async {
+  Future<int> insertFood(Food food) async {
+    print(3);
     final Database db = await initDb();
-      await db.insert(
+    print(4);
+      int result = await db.insert(
           'foods', food.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace
       );
       print("${food.foodValue} was successfully inserted in the db!");
+      return result;
     }
 
   Future<List<Food>> fetchFoods() async {
@@ -42,16 +45,27 @@ class DatabaseHelper {
     
     return List.generate(maps.length, (i) {
       return Food(
-        maps[i]['id'],
         maps[i]['foodValue'],
-        DateTime.parse(maps[i]['datetime'])
+        DateTime.parse(maps[i]['datetime']),
+        maps[i]['id'],
       );
     });
   }
 
+
+
+Future<void> updateDog(Food food) async {
+  final Database db = await initDb();
+  await db.update(
+    'foods',
+    food.toMap(),
+    // Ensure that the Dog has a matching id.
+    where: 'id = ?',
+    // Pass the Dog's id as a whereArg to prevent SQL injection.
+    whereArgs: [food.id],
+  );
 }
 
-
-
+}
 
 

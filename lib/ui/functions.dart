@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'objects.dart';
 
-FloatingActionButton calendarButton() {
+FloatingActionButton calendarButton(DateTime? selectedDay, Function insertZucchini) {
   return FloatingActionButton(
-      onPressed: () {}
+      onPressed: () {
+        insertZucchini(selectedDay);
+      }
   );
 }
 
@@ -22,7 +24,7 @@ List<Food> events = [];
 
 
 //This will create the list from _selectedEvents
-Widget buildList(List<dynamic> events, BuildContext context, Function callback) {
+Widget buildList(List<dynamic> events, BuildContext context) {
 
 
       return ListView.builder(
@@ -32,13 +34,14 @@ Widget buildList(List<dynamic> events, BuildContext context, Function callback) 
         itemBuilder: (context, index) {
           return ListTile(title: Text(events[index].foodValue),
           trailing: IconButton(
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.remove),
             onPressed: () async {
               // callback(events, index); //this is just a temporary function
               // Food(3, "Peperonata", DateTime.parse("2023-01-18 00:00:00.000Z")),
               // await _db.insertFood(
               //     Food(3, "Peperonata", DateTime.parse("2023-01-18 00:00:00.000Z"),
               // )); //TODO: Delete this garbage once you've done.
+              print("Insert something here");
 
             },
           ),

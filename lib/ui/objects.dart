@@ -1,8 +1,8 @@
 
 class Food {
-  int id;
   String foodValue;
   DateTime dateTime;
+  int? id;
 
 
   void display() {
@@ -11,16 +11,16 @@ class Food {
   }
 
   Food(
-    this.id,
     this.foodValue,
-    this.dateTime
+    this.dateTime,
+    [this.id]
 );
 
   Map<String, dynamic> toMap() {
     return {
-      "id" : id,
       "foodValue" : foodValue,
-      "dateTime" : dateTime.toString()
+      "dateTime" : dateTime.toString(),
+      "id" : id,
     };
   }
 }
@@ -76,8 +76,3 @@ class Mood {
     };
   }
 }
-
-List<Food> foods= [
-  Food(1, "Banana e Mango", DateTime.parse("2023-01-19 00:00:00.000Z")),
-  Food(2, "Beans", DateTime.parse("2023-01-18 00:00:00.000Z")),
-];
