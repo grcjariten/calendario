@@ -7,8 +7,8 @@ TableCalendar myCalendar(
 
     DateTime? selectedDay,
     DateTime focusedDay,
+    List<Item> items,
 
-    List<Food> foods, //TODO: temporary list of food
     Function onDaySelectedCallback, //set a selectedDay
     Function formatChangedCallback, //change the calendar format
     Function onPageChangedCallback, //set a different focusDay
@@ -36,7 +36,7 @@ TableCalendar myCalendar(
       onPageChangedCallback(newMonth);
   },
   eventLoader: (day) {
-      return getEventsForDay(day, foods); //TODO: temporarily gives foods and not more general events (maybe could be a correct approach though for the editing)
+      return getEventsForDay(day, items); //TODO: temporarily gives foods and not more general events (maybe could be a correct approach though for the editing)
   },
   );
 }

@@ -1,14 +1,11 @@
 
+import 'package:flutter/material.dart';
+
 class Food {
   String foodValue;
   DateTime dateTime;
   int? id;
 
-
-  void display() {
-    print(
-        "Food information:\nId: $id\nDateTime: $dateTime \nfoodValue: $foodValue");
-  }
 
   Food(
     this.foodValue,
@@ -26,53 +23,57 @@ class Food {
 }
 
 class Stool {
-  int id;
-  String stoolValue;
+  int stoolValue;
   DateTime dateTime;
+  int? id;
 
-
-  void display() {
-    print(
-        "Food information:\nId: $id\nDateTime: $dateTime \nfoodValue: $stoolValue");
-  }
 
   Stool(
-      this.id,
       this.stoolValue,
-      this.dateTime
+      this.dateTime,
+      [this.id]
       );
 
   Map<String, dynamic> toMap() {
     return {
+
+      "stoolValue" : stoolValue,
+      "dateTime" : dateTime,
       "id" : id,
-      "foodValue" : stoolValue,
-      "dateTime" : dateTime
     };
   }
 }
 
 class Mood {
-  int id;
-  String moodValue;
+
+  int moodValue;
   DateTime dateTime;
+  int? id;
 
-
-  void display() {
-    print(
-        "Food information:\nId: $id\nDateTime: $dateTime \nfoodValue: $moodValue");
-  }
 
   Mood(
-      this.id,
       this.moodValue,
-      this.dateTime
+      this.dateTime,
+      [this.id]
       );
 
   Map<String, dynamic> toMap() {
     return {
+      "moodValue" : moodValue,
+      "dateTime" : dateTime,
       "id" : id,
-      "foodValue" : moodValue,
-      "dateTime" : dateTime
     };
   }
+}
+
+class Item {
+ Object element;
+ String tileTitle;
+ Color tileColor;
+ DateTime dateTime;
+
+
+Item(this.element, this.tileTitle, this.tileColor, this.dateTime);
+
+
 }

@@ -16,10 +16,10 @@ class DatabaseHelper {
             'CREATE TABLE foods(id INTEGER PRIMARY KEY, foodValue TEXT, datetime TEXT)'
         );
         db.execute(
-            'CREATE TABLE moods(id INTEGER PRIMARY KEY, moodValue TEXT, datetime TEXT)'
+            'CREATE TABLE moods(id INTEGER PRIMARY KEY, moodValue INTEGER, datetime TEXT)'
         );
         db.execute(
-            'CREATE TABLE stools(id INTEGER PRIMARY KEY, stoolValue TEXT, datetime TEXT)'
+            'CREATE TABLE stools(id INTEGER PRIMARY KEY, stoolValue INTEGER, datetime TEXT)'
         );
       },
       version: 1,
@@ -52,19 +52,33 @@ class DatabaseHelper {
     });
   }
 
+  Future<List<Mood>> fetchMoods() async {
+    final Database db = await initDb();
+    final List<Map<String, dynamic>> maps = await db.query('moods');
+
+    return List.generate(maps.length, (i) {
+      return Mood(
+        maps[i]['moodValue'],
+        DateTime.parse(maps[i]['datetime']),
+        maps[i]['id'],
+      );
+    });
+  }
+
+  Future<List<Stool>> fetchStools() async {
+    final Database db = await initDb();
+    final List<Map<String, dynamic>> maps = await db.query('stools');
+
+    return List.generate(maps.length, (i) {
+      return Stool(
+        maps[i]['stoolValue'],
+        DateTime.parse(maps[i]['datetime']),
+        maps[i]['id'],
+      );
+    });
+  }
 
 
-Future<void> updateDog(Food food) async {
-  final Database db = await initDb();
-  await db.update(
-    'foods',
-    food.toMap(),
-    // Ensure that the Dog has a matching id.
-    where: 'id = ?',
-    // Pass the Dog's id as a whereArg to prevent SQL injection.
-    whereArgs: [food.id],
-  );
-}
 
 }
 
