@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'ui/functions.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'ui/objects.dart';
+import 'utils/settings.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -13,8 +14,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  DateTime _selectedDay = DateTime.now(), _focusedDay = DateTime.now();
-  CalendarFormat _format = CalendarFormat.twoWeeks;
+  DateTime _selectedDay = today, _focusedDay = today;
+  CalendarFormat _format = defaultFormat;
   List<Item> _filteredItems = [], items = [];
   late CalendarInfo info;
 
@@ -55,17 +56,17 @@ class _MyHomePageState extends State<MyHomePage> {
   //   });
   // }
 
-
   @override
   void didChangeDependencies() async {
+    info = CalendarInfo(_focusedDay, _selectedDay, _format,
+        _onDaySelectedCallback, _formatChangedCallback, _onPageChangedCallback);
     items = await fetchingItems();
     super.didChangeDependencies();
+
   }
 
   @override
   Widget build(BuildContext context) {
-    info = CalendarInfo(_focusedDay, _selectedDay, _format,
-        _onDaySelectedCallback, _formatChangedCallback, _onPageChangedCallback);
     return Scaffold(
       backgroundColor: Colors.pinkAccent[300],
       floatingActionButton: floatingButton(_selectedDay),

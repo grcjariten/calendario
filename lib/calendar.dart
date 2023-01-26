@@ -1,3 +1,4 @@
+import 'package:calendario/utils/settings.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'ui/functions.dart';
 import 'ui/objects.dart';
@@ -9,8 +10,8 @@ TableCalendar myCalendar(
   return TableCalendar(
     // locale: 'pl_PL', //TableCalendar language
     focusedDay: calendarInfo.focusedDay,
-    firstDay: DateTime.utc(2021, 01, 16),
-    lastDay: DateTime.utc(2040, 01, 16),
+    firstDay: defaultFirstDay,
+    lastDay: defaultLastDay,
 
 
   selectedDayPredicate:
@@ -26,5 +27,5 @@ TableCalendar myCalendar(
   onPageChanged: (newMonth) {
     calendarInfo.onPageChangedCallback(newMonth);
   },
-  eventLoader: (day)  => getEventsForDay(day, items)); //TODO: temporarily gives foods and not more general events (maybe could be a correct approach though for the editing)
+  eventLoader: (day)  => getEventsForDay(day, items));
 }

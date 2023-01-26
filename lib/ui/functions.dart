@@ -1,10 +1,11 @@
+import 'package:calendario/utils/settings.dart';
 import 'package:flutter/material.dart';
 import 'databasehelper.dart';
 import 'objects.dart';
 
 FloatingActionButton floatingButton(DateTime? selectedDay) {
   return FloatingActionButton(
-    backgroundColor: Colors.indigo,
+    backgroundColor: floatingColor,
 child: const Text("+"),
       onPressed: () {
         // insertZucchini(selectedDay);
@@ -68,13 +69,13 @@ Future<List<Item>> fetchingItems() async {
 
   List<Item> newList = [];
   for (var element in foods) {newList.add(
-    Item(element, element.foodValue, Colors.green, element.dateTime)
+    Item(element, element.foodValue, foodColor, element.dateTime)
   );}
   for (var element in moods) {newList.add(
-      Item(element, element.moodValue.toString(), Colors.redAccent, element.dateTime)
+      Item(element, element.moodValue.toString(), moodColor, element.dateTime)
   );}
   for (var element in stools) {newList.add(
-      Item(element, element.stoolValue.toString(), Colors.brown, element.dateTime)
+      Item(element, element.stoolValue.toString(), stoolColor, element.dateTime)
   );}
   return newList;
 }
