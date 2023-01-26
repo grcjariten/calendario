@@ -15,7 +15,7 @@ Widget buildList(List<Item> events, BuildContext context) {
           return Container(
             color: events[index].tileColor,
             child: ListTile(
-              title: Text(filterOutput(events[index])),
+              title: Text(events[index].filterTitle()),
               trailing: IconButton(
                 icon: const Icon(Icons.remove),
                 onPressed: () async {

@@ -48,25 +48,3 @@ Future<List<Item>> fetchingItems() async {
 
 
 
-String filterOutput(Item item) {
-  Object object= item.element;
-  if (object is Mood) {
-    int value = object.moodValue;
-    if(value < 6) return moodLow;
-    if(value >= 6 && value < 8) return moodMedium;
-    if(value >= 8) return moodHigh;
-  }
-  else if (object is Stool) {
-    int value = object.stoolValue;
-    if(value < 6) return stoolLow;
-    if(value >= 6 && value < 8) return stoolMedium;
-    if(value >= 8) return stoolHigh;
-  }
-  else if(object is Food) {
-    return object.foodValue;
-  }
-  return "error";
-}
-
-
-

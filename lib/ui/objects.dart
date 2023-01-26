@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../utils/settings.dart';
+
 class Food {
   String foodValue;
   DateTime dateTime;
@@ -75,6 +77,27 @@ class Item {
 
 
   Item(this.element, this.tileTitle, this.tileColor, this.dateTime);
+
+  String filterTitle() {
+    Object object= element;
+    if (object is Mood) {
+      int value = object.moodValue;
+      if(value < 6) return moodLow;
+      if(value >= 6 && value < 8) return moodMedium;
+      if(value >= 8) return moodHigh;
+    }
+    else if (object is Stool) {
+      int value = object.stoolValue;
+      if(value < 6) return stoolLow;
+      if(value >= 6 && value < 8) return stoolMedium;
+      if(value >= 8) return stoolHigh;
+    }
+    else if(object is Food) {
+      return object.foodValue;
+    }
+    return "error";
+  }
+
 
 }
 
