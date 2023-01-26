@@ -40,13 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //TODO: Function to add a Food
   // _insertZucchini(DateTime selected) {
-  //   print(1);
   //   Food zucchini = Food("zucchini", selected);
   //   zucchini.foodValue = "zucchini";
   //   zucchini.dateTime = selected;
   //   setState(() {
-  //     print(2);
-  //
   //     db.insertFood(zucchini).then((newId) {
   //       zucchini.id = newId;
   //       print("zucchini was inserted in the database with the id: $newId");
@@ -58,15 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void didChangeDependencies() async {
-    info = CalendarInfo(_focusedDay, _selectedDay, _format,
-        _onDaySelectedCallback, _formatChangedCallback, _onPageChangedCallback);
     items = await fetchingItems();
     super.didChangeDependencies();
-
   }
 
   @override
   Widget build(BuildContext context) {
+    info = CalendarInfo(_focusedDay, _selectedDay, _format,
+        _onDaySelectedCallback, _formatChangedCallback, _onPageChangedCallback);
+
     return Scaffold(
       backgroundColor: Colors.pinkAccent[300],
       floatingActionButton: floatingButton(_selectedDay),

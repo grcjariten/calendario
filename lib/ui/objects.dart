@@ -76,19 +76,6 @@ class Item {
   Item(this.element, this.tileTitle, this.tileColor, this.dateTime);
 }
 
-// CalendarFormat calendarFormat,
-//
-//     DateTime? selectedDay,
-// DateTime focusedDay,
-//     List<Item> items,
-//
-// Function onDaySelectedCallback, //set a selectedDay
-//     Function formatChangedCallback, //change the calendar format
-// Function onPageChangedCallback, //set a different focusDay
-// ) {
-
-// format, day, day, callback, callback, callback
-
 class CalendarInfo {
   DateTime focusedDay, selectedDay;
   CalendarFormat format;
