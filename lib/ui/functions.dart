@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'databasehelper.dart';
 import 'objects.dart';
 
-FloatingActionButton calendarButton(DateTime? selectedDay) {
+FloatingActionButton floatingButton(DateTime? selectedDay) {
   return FloatingActionButton(
     backgroundColor: Colors.indigo,
 child: const Text("+"),

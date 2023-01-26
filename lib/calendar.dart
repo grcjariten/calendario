@@ -3,40 +3,28 @@ import 'ui/functions.dart';
 import 'ui/objects.dart';
 
 TableCalendar myCalendar(
-    CalendarFormat calendarFormat,
-
-    DateTime? selectedDay,
-    DateTime focusedDay,
+    CalendarInfo calendarInfo,
     List<Item> items,
-
-    Function onDaySelectedCallback, //set a selectedDay
-    Function formatChangedCallback, //change the calendar format
-    Function onPageChangedCallback, //set a different focusDay
     ) {
   return TableCalendar(
     // locale: 'pl_PL', //TableCalendar language
-    focusedDay: focusedDay,
+    focusedDay: calendarInfo.focusedDay,
     firstDay: DateTime.utc(2021, 01, 16),
     lastDay: DateTime.utc(2040, 01, 16),
 
 
   selectedDayPredicate:
-      (day) {
-    return isSameDay(selectedDay, day);
-  }
+      (day)  => isSameDay(calendarInfo.selectedDay, day)
   ,
   onDaySelected: (selected, focused) {
-      onDaySelectedCallback(selected, focused);
+      calendarInfo.onDaySelectedCallback(selected, focused);
   },
-  calendarFormat: calendarFormat,
+  calendarFormat: calendarInfo.format,
       onFormatChanged: (format) {
-      formatChangedCallback(format);
+        calendarInfo.formatChangedCallback(format);
       },
   onPageChanged: (newMonth) {
-      onPageChangedCallback(newMonth);
+    calendarInfo.onPageChangedCallback(newMonth);
   },
-  eventLoader: (day) {
-      return getEventsForDay(day, items); //TODO: temporarily gives foods and not more general events (maybe could be a correct approach though for the editing)
-  },
-  );
+  eventLoader: (day)  => getEventsForDay(day, items)); //TODO: temporarily gives foods and not more general events (maybe could be a correct approach though for the editing)
 }
