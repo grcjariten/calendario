@@ -1,14 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../utils/settings.dart';
 
 class Food {
   String foodValue;
   DateTime dateTime;
   int? id;
-
 
   Food(
     this.foodValue,
@@ -39,7 +36,6 @@ class Stool {
 
   Map<String, dynamic> toMap() {
     return {
-
       "stoolValue" : stoolValue,
       "dateTime" : dateTime,
       "id" : id,
@@ -73,10 +69,17 @@ class Item {
   Object element;
   String tileTitle;
   Color? tileColor;
-  DateTime dateTime;
 
 
-  Item(this.element, this.tileTitle, this.tileColor, this.dateTime);
+  Item(this.element, this.tileTitle, this.tileColor);
+
+  DateTime date() {
+    Object object= element;
+    if(object is Food) return object.dateTime;
+    if(object is Mood) return object.dateTime;
+    if(object is Stool) return object.dateTime;
+    return today;
+  }
 
   String filterTitle() {
     Object object= element;

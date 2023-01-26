@@ -19,7 +19,7 @@ child: const Text("+"),
 List<Item> getEventsForDay(DateTime day, List<Item> items) {
 List<Item> events = [];
   for (var element in items) {
-    if(element.dateTime ==  day) {
+    if(element.date() ==  day) {
       events.add(element);
     }
   }
@@ -35,13 +35,13 @@ Future<List<Item>> fetchingItems() async {
 
   List<Item> newList = [];
   for (var element in foods) {newList.add(
-    Item(element, element.foodValue, foodColor, element.dateTime)
+    Item(element, element.foodValue, foodColor)
   );}
   for (var element in moods) {newList.add(
-      Item(element, element.moodValue.toString(), moodColor, element.dateTime)
+      Item(element, element.moodValue.toString(), moodColor)
   );}
   for (var element in stools) {newList.add(
-      Item(element, element.stoolValue.toString(), stoolColor, element.dateTime)
+      Item(element, element.stoolValue.toString(), stoolColor)
   );}
   return newList;
 }
