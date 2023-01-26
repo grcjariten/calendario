@@ -70,10 +70,12 @@ class Mood {
 class Item {
   Object element;
   String tileTitle;
-  Color tileColor;
+  Color? tileColor;
   DateTime dateTime;
 
+
   Item(this.element, this.tileTitle, this.tileColor, this.dateTime);
+
 }
 
 class CalendarInfo {

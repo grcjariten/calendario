@@ -1,3 +1,4 @@
+import 'package:calendario/ui/functions.dart';
 import 'package:flutter/material.dart';
 import 'ui/objects.dart';
 
@@ -14,7 +15,7 @@ Widget buildList(List<Item> events, BuildContext context) {
           return Container(
             color: events[index].tileColor,
             child: ListTile(
-              title: Text(events[index].tileTitle),
+              title: Text(filterOutput(events[index])),
               trailing: IconButton(
                 icon: const Icon(Icons.remove),
                 onPressed: () async {
