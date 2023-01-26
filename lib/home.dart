@@ -1,5 +1,6 @@
 import 'package:calendario/calendar.dart';
 import 'package:flutter/material.dart';
+import 'buildlist.dart';
 import 'ui/functions.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'ui/objects.dart';
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _onDaySelectedCallback, _formatChangedCallback, _onPageChangedCallback);
 
     return Scaffold(
-      backgroundColor: Colors.pinkAccent[300],
+      backgroundColor: backgroundColor,
       floatingActionButton: floatingButton(_selectedDay),
       body: Column(
         children: [

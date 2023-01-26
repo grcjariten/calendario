@@ -8,6 +8,7 @@ DateTime today = DateTime.now(); //Initial Value for focusDay in home.dart
 CalendarFormat defaultFormat= CalendarFormat.twoWeeks;
 
 //Colors
+Color? backgroundColor = Colors.white;
 Color foodColor = Colors.green;
 Color moodColor = Colors.redAccent;
 Color stoolColor = Colors.brown;
