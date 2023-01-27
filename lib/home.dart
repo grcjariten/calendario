@@ -73,9 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            insertFloating(ObjectType.food, _selectedDay, context),
-            insertFloating(ObjectType.mood, _selectedDay, context),
-            insertFloating(ObjectType.stool, _selectedDay, context),
+            insertFloating(ObjectType.food, context),
+            insertFloating(ObjectType.mood, context),
+            insertFloating(ObjectType.stool, context),
           ],
         ),
       ),

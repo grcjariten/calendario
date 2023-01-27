@@ -5,10 +5,10 @@ import 'package:calendario/utils/settings.dart';
 import 'package:flutter/material.dart';
 import 'databasehelper.dart';
 import 'objects.dart';
+import 'package:intl/intl.dart';
 
 
-
-FloatingActionButton insertFloating(ObjectType type, DateTime selectedDay, BuildContext context) {
+FloatingActionButton insertFloating(ObjectType type, BuildContext context) {
   foodActionButton() {
     return FloatingActionButton(
         heroTag: "foodTag",
@@ -87,5 +87,29 @@ Future<List<Item>> fetchingItems() async {
   return newList;
 }
 
+//FoodForm objects
+TextFormField foodField(TextEditingController foodController) {
+  return TextFormField(
+    controller: foodController,
+    decoration: const InputDecoration(
+        hintText: "Enter a food"
+    ),
+  );
+}
 
+Row datePickerButton(DateTime dateSelected, BuildContext context) {
+  return Row(
+    children: [
+      Text(DateFormat('d MMM y').format(dateSelected)),
+      const SizedBox(width: 5),
+      ElevatedButton(
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+          child: const Icon(Icons.calendar_today_sharp),
+          onPressed: () async {
+            // dateSelected = await showDatePicker(
+            //     context: context, initialDate: today, firstDate: defaultFirstDay, lastDate: defaultLastDay);
+          }, ),
+    ],
+  );
+}
 
