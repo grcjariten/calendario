@@ -12,7 +12,12 @@ Color? backgroundColor = Colors.white;
 Color? foodColor = Colors.green[200];
 Color? moodColor = Colors.blue[100];
 Color? stoolColor = Colors.brown[200];
-Color floatingColor = Colors.indigo;
+Color insertFloatingFoodColor = Colors.green;
+Color insertFloatingMoodColor = Colors.indigo;
+Color insertFloatingStoolColor = Colors.brown;
+Color foodPageAppBarColor = insertFloatingFoodColor;
+Color moodPageAppBarColor = insertFloatingMoodColor;
+Color stoolPageAppBarColor = insertFloatingStoolColor;
 
 //Value ouput
 String stoolLow = "Cacca dappertutto";

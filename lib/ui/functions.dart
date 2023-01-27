@@ -1,20 +1,61 @@
+import 'package:calendario/formPages/foodFormPage.dart';
+import 'package:calendario/formPages/moodFormPage.dart';
+import 'package:calendario/formPages/stoolFormPage.dart';
 import 'package:calendario/utils/settings.dart';
 import 'package:flutter/material.dart';
 import 'databasehelper.dart';
 import 'objects.dart';
 
-FloatingActionButton floatingButton(DateTime? selectedDay) {
-  return FloatingActionButton(
-    backgroundColor: floatingColor,
-child: const Text("+"),
-      onPressed: () {
-        // insertZucchini(selectedDay);
-        //TODO: Put here a form to add elements
-      }
-  );
+
+
+FloatingActionButton insertFloating(ObjectType type, DateTime selectedDay, BuildContext context) {
+  foodActionButton() {
+    return FloatingActionButton(
+        heroTag: "foodTag",
+        backgroundColor: insertFloatingFoodColor,
+        child: const Text("+\nFood", textAlign: TextAlign.center,),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const FoodFormPage()));
+        }
+    );
+  }
+
+  moodActionButton() {
+    return FloatingActionButton(
+      heroTag: "moodTag",
+        backgroundColor: insertFloatingMoodColor,
+        child: const Text("+\nMood", textAlign: TextAlign.center,),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const MoodFormPage()));
+        }
+    );
+  }
+  stoolActionButton() {
+    return FloatingActionButton(
+        heroTag: "stoolTag",
+        backgroundColor: insertFloatingStoolColor,
+        child: const Text("+\nStool", textAlign: TextAlign.center,),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const StoolFormPage()));
+        }
+    );
+  }
+
+  if(type == ObjectType.food) {
+      return foodActionButton();
+  }
+  else if(type == ObjectType.mood) {
+      return moodActionButton();
+  } else if(type == ObjectType.stool) {
+      return stoolActionButton();
+  }
+  else {
+return FloatingActionButton(onPressed: () {});
 }
-
-
+}
 
 List<Item> getEventsForDay(DateTime day, List<Item> items) {
 List<Item> events = [];

@@ -67,7 +67,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-      floatingActionButton: floatingButton(_selectedDay),
+      floatingActionButton:
+      Padding(
+        padding: const EdgeInsets.only(left: 25),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            insertFloating(ObjectType.food, _selectedDay, context),
+            insertFloating(ObjectType.mood, _selectedDay, context),
+            insertFloating(ObjectType.stool, _selectedDay, context),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           myCalendar(
