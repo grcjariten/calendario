@@ -20,7 +20,7 @@ TextFormField foodField(TextEditingController foodController) {
   );
 }
 
-Row dateSelectorWidget(DateTime dateSelected, Function callback, BuildContext context) {
+Row dateSelectorWidget(BuildContext context, DateTime dateSelected, Function callback) {
   DateTime? newDateSelected;
 
   ElevatedButton dateSelectorButton() {
@@ -49,7 +49,9 @@ Row dateSelectorWidget(DateTime dateSelected, Function callback, BuildContext co
   );
 }
 
-ElevatedButton saveButton(BuildContext context, DatabaseHelper db, GlobalKey<FormState> formKey, TextEditingController foodController, DateTime dateSelected) {
+ElevatedButton saveButton(BuildContext context, GlobalKey<FormState> formKey, TextEditingController foodController, DateTime dateSelected) {
+  DatabaseHelper db = DatabaseHelper();
+
   return ElevatedButton(
     style: ButtonStyle(backgroundColor: MaterialStateProperty.all(foodPageAppBarColor)),
     child: const Text("Save"),

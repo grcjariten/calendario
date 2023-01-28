@@ -1,7 +1,7 @@
 import '../home_ui/fetching_methods.dart';
 import 'calendar.dart';
 import 'package:flutter/material.dart';
-import '../home_ui/buildlist.dart';
+import '../home_ui/build_list.dart';
 import '../home_ui/home_widgets.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../utils/objects.dart';
