@@ -1,6 +1,6 @@
 import 'package:calendario/utils/settings.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'ui/functions.dart';
+import 'ui/home_functions.dart';
 import 'ui/objects.dart';
 
 TableCalendar myCalendar(

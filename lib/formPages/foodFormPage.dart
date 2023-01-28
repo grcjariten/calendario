@@ -1,10 +1,22 @@
-import 'package:calendario/ui/functions.dart';
+import 'form_functions.dart';
 import 'package:flutter/material.dart';
 import '../utils/settings.dart';
 
-class FoodFormPage extends StatelessWidget {
+class FoodFormPage extends StatefulWidget {
   const FoodFormPage({Key? key}) : super(key: key);
 
+  @override
+  State<FoodFormPage> createState() => _FoodFormPageState();
+}
+
+class _FoodFormPageState extends State<FoodFormPage> {
+  DateTime dateSelected = today;
+
+  newDateSelectedCallBack(DateTime daySelected) {
+    setState(() {
+      dateSelected = daySelected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +28,7 @@ class FoodFormPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: foodForm(context),
+        child: foodForm(dateSelected,context, newDateSelectedCallBack),
       ),
     );
   }
@@ -24,9 +36,8 @@ class FoodFormPage extends StatelessWidget {
 
 //TODO: Insert a foodform with defaultDay today, and a calendar picker for the datetime.
 //TODO: The ID will be picked automatically
-Form foodForm(BuildContext context) {
+Form foodForm(DateTime dateSelected, BuildContext context, dayPickedCallBack) {
   GlobalKey<FormState> foodFormKey = GlobalKey<FormState>();
-  DateTime dateSelected = today;
   TextEditingController foodController = TextEditingController();
 
 
@@ -37,7 +48,7 @@ Form foodForm(BuildContext context) {
         foodField(foodController),
         Align(
             alignment: Alignment.centerLeft,
-            child: datePickerButton(dateSelected, context)),
+            child: dateSelectorWidget(dateSelected, dayPickedCallBack, context)),
       ],
     ),
   );
