@@ -1,10 +1,11 @@
-import 'package:calendario/calendar.dart';
+import '../home_ui/fetching_methods.dart';
+import 'calendar.dart';
 import 'package:flutter/material.dart';
-import 'buildlist.dart';
-import 'ui/home_functions.dart';
+import '../home_ui/buildlist.dart';
+import '../home_ui/home_widgets.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'ui/objects.dart';
-import 'utils/settings.dart';
+import '../utils/objects.dart';
+import '../utils/settings.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -39,20 +40,17 @@ class _MyHomePageState extends State<MyHomePage> {
     _focusedDay = newMonth;
   }
 
-  //TODO: Function to add a Food
-  // _insertZucchini(DateTime selected) {
-  //   Food zucchini = Food("zucchini", selected);
-  //   zucchini.foodValue = "zucchini";
-  //   zucchini.dateTime = selected;
-  //   setState(() {
-  //     db.insertFood(zucchini).then((newId) {
-  //       zucchini.id = newId;
-  //       print("zucchini was inserted in the database with the id: $newId");
-  //     }
-  //
-  //     );
-  //   });
-  // }
+  _newItemCallBack(Item? newItem) {
+    if(newItem != null) {
+      setState(() {
+        _filteredItems.add(newItem);
+      });
+    } else {
+      return;
+    }
+  }
+
+
 
   @override
   void didChangeDependencies() async {
@@ -65,6 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
     info = CalendarInfo(_focusedDay, _selectedDay, _format,
         _onDaySelectedCallback, _formatChangedCallback, _onPageChangedCallback);
 
+
+
     return Scaffold(
       backgroundColor: backgroundColor,
       floatingActionButton:
@@ -73,9 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            insertFloating(ObjectType.food, context),
-            insertFloating(ObjectType.mood, context),
-            insertFloating(ObjectType.stool, context),
+            insertFloating(_selectedDay, ObjectType.food, context, _newItemCallBack),
+            insertFloating(_selectedDay, ObjectType.mood, context, _newItemCallBack),
+            insertFloating(_selectedDay, ObjectType.stool, context, _newItemCallBack),
           ],
         ),
       ),

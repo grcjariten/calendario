@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/objects.dart';
+import '../utils/objects.dart';
 
 //This will create the list from _selectedEvents
 Widget buildList(List<Item> events, BuildContext context) {
@@ -18,7 +18,6 @@ Widget buildList(List<Item> events, BuildContext context) {
               trailing: IconButton(
                 icon: const Icon(Icons.remove),
                 onPressed: () async {
-
                   // )); //TODO: Delete this garbage once you've done.
                   print("Insert something here");
 

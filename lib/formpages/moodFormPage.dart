@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:calendario/utils/settings.dart';
 
 class MoodFormPage extends StatelessWidget {
-  const MoodFormPage({Key? key}) : super(key: key);
+  const MoodFormPage({Key? key, required this.dateSelected}) : super(key: key);
+  final DateTime dateSelected;
+
 
   @override
   Widget build(BuildContext context) {

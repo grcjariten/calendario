@@ -105,6 +105,19 @@ class Item {
     return "error";
   }
 
+  Color? filterColor() {
+    Object object= element;
+    if (object is Food){
+      return foodColor;
+    }
+    else if (object is Mood){
+      return moodColor;
+    }
+    else {
+      return foodColor;
+    }
+  }
+
 
 }
 

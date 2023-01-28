@@ -32,6 +32,7 @@ dependencies:
   sqflite:
   path:
   table_calendar: ^3.0.9
+  intl: ^0.18.0
 
 
   # The following adds the Cupertino Icons font to your application.

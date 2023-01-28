@@ -28,9 +28,7 @@ class DatabaseHelper {
 
 
   Future<int> insertFood(Food food) async {
-    print(3);
     final Database db = await initDb();
-    print(4);
       int result = await db.insert(
           'foods', food.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace
