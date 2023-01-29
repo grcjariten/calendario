@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _newItemCallBack(Item? newItem) {
+    _onDaySelectedCallback(_selectedDay, _focusedDay);
     if(newItem != null) {
       setState(() {
         _filteredItems.add(newItem);

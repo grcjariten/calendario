@@ -4,20 +4,12 @@ import 'package:calendario/utils/settings.dart';
 
 import '../utils/objects.dart';
 
-TextFormField foodField(TextEditingController foodController) {
-  return TextFormField(
-    validator: (value) {
-      if(value == null || value.isEmpty) {
-        return "Please enter a food here";
-      }
-      return null;
-    },
-    controller: foodController,
-    decoration: const InputDecoration(
-        hintText: "Enter a food"
-    ),
-  );
+ moodField(
+     //controller
+     ) {
+ //Switch per il moodfield
 }
+
 
 
 ElevatedButton saveButton(
