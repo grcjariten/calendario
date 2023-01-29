@@ -44,7 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
     _onDaySelectedCallback(_selectedDay, _focusedDay);
     if(newItem != null) {
       setState(() {
-        _filteredItems.add(newItem);
+        items.add(newItem);
+        _filteredItems = getEventsForDay(_selectedDay, items);
       });
     } else {
       return;
