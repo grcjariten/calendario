@@ -1,6 +1,6 @@
-import 'package:calendario/formpages/foodFormPage.dart';
-import 'package:calendario/formpages/moodFormPage.dart';
-import 'package:calendario/formpages/stoolFormPage.dart';
+import 'package:calendario/form_pages/foodFormPage.dart';
+import 'package:calendario/form_pages/moodFormPage.dart';
+import 'package:calendario/form_pages/stoolFormPage.dart';
 import 'package:calendario/utils/settings.dart';
 import 'package:flutter/material.dart';
 import '../utils/objects.dart';

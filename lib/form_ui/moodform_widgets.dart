@@ -1,42 +1,34 @@
-import 'package:calendario/utils/database_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:calendario/utils/settings.dart';
+import '../utils/database_helper.dart';
 import '../utils/objects.dart';
-
- moodField(
-     //controller
-     ) {
- //Switch per il moodfield
-}
-
-
+import '../utils/settings.dart';
 
 ElevatedButton saveButton(
     BuildContext context,
     GlobalKey<FormState> formKey,
-    TextEditingController foodController,
+    int moodValue,
     DateTime dateSelected) {
   final db = DatabaseHelper();
 
   return ElevatedButton(
     style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(foodPageAppBarColor)),
+        backgroundColor: MaterialStateProperty.all(moodPageAppBarColor)),
     child: const Text("Save"),
 
     onPressed: () {
       if(formKey.currentState!.validate()) {
-        final newFood = Food(foodController.text, dateSelected);
-        //Inserting a new Food
-        db.insertFood(newFood).then((id) {
-          newFood.id = id;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("New Data saved! id: $id")));
-        });
+        final newMood = Mood(moodValue, dateSelected);
+        //Inserting a new Mood TODO: First create a new method for inserting a new Mood in the DB.
+        // db.insertMood(newMood).then((id) {
+        //   newMood.id = id;
+        //   ScaffoldMessenger.of(context)
+        //       .showSnackBar(SnackBar(content: Text("New Data saved! id: $id")));
+        // });
 
         //Generating a new Item to pop back
-        final itemPopped = Item(newFood, newFood.foodValue, foodColor);
+        final itemPopped = Item(newMood, newMood.moodValue.toString(), moodColor);
         Navigator.pop(context, itemPopped);
       }
-},
+    },
   );
 }

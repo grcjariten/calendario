@@ -9,8 +9,6 @@ class FoodFormPage extends StatefulWidget {
   const FoodFormPage({Key? key, required this.dateSelected}) : super(key: key);
   final DateTime dateSelected;
 
-
-
   @override
   State<FoodFormPage> createState() => _FoodFormPageState();
 }
@@ -19,13 +17,32 @@ class _FoodFormPageState extends State<FoodFormPage> {
   late DateTime dateSelected = widget.dateSelected;
 
 
-
   newDateSelectedCallBack(DateTime daySelected) {
     setState(() {
       dateSelected = DateTime.parse("${DateFormat("yyyy-MM-dd HH:mm:ss").format(daySelected)}""Z");
     });
   }
 
+  Form foodForm(BuildContext context, DateTime dateSelected,  dayPickedCallBack) {
+    GlobalKey<FormState> foodFormKey = GlobalKey<FormState>();
+    TextEditingController foodController = TextEditingController();
+
+
+    return Form(
+      key: foodFormKey,
+      child: Column(
+        children: [
+          foodField(foodController),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: dateSelectorWidget(context, dateSelected, dayPickedCallBack)),
+          saveButton(context, foodFormKey, foodController, dateSelected)
+        ],
+
+      ),
+    );
+
+  }
 
 
   @override
@@ -44,23 +61,4 @@ class _FoodFormPageState extends State<FoodFormPage> {
   }
 }
 
-Form foodForm(BuildContext context, DateTime dateSelected,  dayPickedCallBack) {
-  GlobalKey<FormState> foodFormKey = GlobalKey<FormState>();
-  TextEditingController foodController = TextEditingController();
 
-
-  return Form(
-    key: foodFormKey,
-    child: Column(
-      children: [
-        foodField(foodController),
-        Align(
-            alignment: Alignment.centerLeft,
-            child: dateSelectorWidget(context, dateSelected, dayPickedCallBack)),
-        saveButton(context, foodFormKey, foodController, dateSelected)
-      ],
-
-    ),
-  );
-
-}
