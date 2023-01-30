@@ -17,7 +17,8 @@ TextFormField foodField(TextEditingController foodController) {
   );
 }
 
-Row dateSelectorWidget(BuildContext context, DateTime dateSelected,Function callback) {
+Row dateSelectorWidget(BuildContext context, DateTime dateSelected, Function
+callback, Color buttonColor) {
   DateTime? newDateSelected;
 
   void _selectDate() async {
@@ -32,7 +33,7 @@ Row dateSelectorWidget(BuildContext context, DateTime dateSelected,Function call
 
   ElevatedButton dateSelectorButton() {
     return ElevatedButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(foodPageAppBarColor)),
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(buttonColor)),
         onPressed: _selectDate,
         child: const Icon(Icons.calendar_today_sharp)
     );

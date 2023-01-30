@@ -34,7 +34,8 @@ class _MoodFormPageState extends State<MoodFormPage> {
           // moodSelector(moodSelected), //TODO: Work on how to select a value
           Align(
               alignment: Alignment.centerLeft,
-              child: dateSelectorWidget(context, dateSelected, dayPickedCallBack)),
+              child: dateSelectorWidget(context, dateSelected,
+                dayPickedCallBack, moodPageAppBarColor)),
           // saveButton(context, moodFormKey, moodSelected, dateSelected)
           // TODO: Work on saveButton first.
         ],
@@ -49,7 +50,7 @@ class _MoodFormPageState extends State<MoodFormPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: foodPageAppBarColor,
+        backgroundColor: moodPageAppBarColor,
         title: const Text("Insert a new mood!"),
       ),
       body: Padding(

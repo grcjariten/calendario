@@ -34,7 +34,8 @@ class _FoodFormPageState extends State<FoodFormPage> {
           foodField(foodController),
           Align(
               alignment: Alignment.centerLeft,
-              child: dateSelectorWidget(context, dateSelected, dayPickedCallBack)),
+              child: dateSelectorWidget(context, dateSelected,
+                  dayPickedCallBack, foodPageAppBarColor)),
           saveFoodBtn(context, foodFormKey, foodController, dateSelected)
         ],
 
