@@ -26,17 +26,6 @@ class DatabaseHelper {
     );
   }
 
-
-  Future<int> insertFood(Food food) async {
-    final Database db = await initDb();
-      int result = await db.insert(
-          'foods', food.toMap(),
-          conflictAlgorithm: ConflictAlgorithm.replace
-      );
-      print("${food.foodValue} was successfully inserted in the db!");
-      return result;
-    }
-
   Future<List<Food>> fetchFoods() async {
     final Database db = await initDb();
     final List<Map<String, dynamic>> maps = await db.query('foods');
@@ -48,6 +37,16 @@ class DatabaseHelper {
         maps[i]['id'],
       );
     });
+  }
+  Future<int> insertFood(Food food) async {
+    final Database db = await initDb();
+    int result = await db.insert(
+        'foods', food.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace
+    );
+    print("New Food:${food.foodValue} was successfully inserted in the "
+        "db!");
+    return result;
   }
 
   Future<List<Mood>> fetchMoods() async {
@@ -62,6 +61,16 @@ class DatabaseHelper {
       );
     });
   }
+  Future<int> insertMood(Mood mood) async {
+    final Database db = await initDb();
+    int result = await db.insert(
+        'moods', mood.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace
+    );
+    print("New Mood:${mood.moodValue} was successfully inserted in the "
+        "db!");
+    return result;
+  }
 
   Future<List<Stool>> fetchStools() async {
     final Database db = await initDb();
@@ -74,6 +83,16 @@ class DatabaseHelper {
         maps[i]['id'],
       );
     });
+  }
+  Future<int> insertStool(Stool stool) async {
+    final Database db = await initDb();
+    int result = await db.insert(
+        'stools', stool.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace
+    );
+    print("New Stool:${stool.stoolValue} was successfully inserted in the "
+        "db!");
+    return result;
   }
 
 
