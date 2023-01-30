@@ -17,22 +17,20 @@ TextFormField foodValuePicker(TextEditingController foodController) {
   );
 }
 
-Column moodStoolValuePicker(double value, Function callBack, Color
+Slider moodStoolValuePicker(double value, Function callBack, Color
 sliderColor) {
-  double number = value;
-  return Column(
-    children: [
-      Text(number.toString()),
-      Slider(
+  return Slider(
+    activeColor: sliderColor,
           min: 1,
           max: 10,
-          divisions: 10,
-          value: number,
-          onChanged: (newValue) {
-            callBack;
-          })
-    ],
+          divisions: 9,
+          value: value,
+          onChanged: (double newValue)  {
+            callBack(newValue);
+          }
+
   );
+
 }
 
 

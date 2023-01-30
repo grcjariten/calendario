@@ -7,7 +7,8 @@ ElevatedButton saveFoodBtn(
     BuildContext context,
     GlobalKey<FormState> formKey,
     TextEditingController foodController,
-    DateTime dateSelected) {
+    DateTime dateSelected,
+    ) {
   final db = DatabaseHelper();
 
   return ElevatedButton(
@@ -39,7 +40,7 @@ ElevatedButton saveMoodBtn(
     GlobalKey<FormState> formKey,
     int moodValue,
     DateTime dateSelected) {
-  final db = DatabaseHelper();
+  // final db = DatabaseHelper();
 
   return ElevatedButton(
     style: ButtonStyle(

@@ -14,6 +14,7 @@ class MoodFormPage extends StatefulWidget {
 
 class _MoodFormPageState extends State<MoodFormPage> {
   late DateTime dateSelected = widget.dateSelected;
+  double moodSelected = 1.0;
 
   newDateSelectedCallBack(DateTime daySelected) {
     setState(() {
@@ -21,17 +22,24 @@ class _MoodFormPageState extends State<MoodFormPage> {
     });
   }
 
+  _sliderCallBack(double newValue) {
+    setState(() {
+      moodSelected = newValue;
+    });
+  }
+
   Form moodForm(BuildContext context, DateTime dateSelected,
       dayPickedCallBack) {
     GlobalKey<FormState> moodFormKey = GlobalKey<FormState>();
-    int moodSelected;
 
 
     return Form(
       key: moodFormKey,
       child: Column(
         children: [
-          // moodSelector(moodSelected), //TODO: Work on how to select a value
+          Text(moodSelected.toInt().toString()),
+          moodStoolValuePicker(moodSelected, _sliderCallBack,
+              moodPageAppBarColor),
           Align(
               alignment: Alignment.centerLeft,
               child: datePicker(context, dateSelected,
