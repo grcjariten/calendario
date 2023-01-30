@@ -31,10 +31,10 @@ class _FoodFormPageState extends State<FoodFormPage> {
       key: foodFormKey,
       child: Column(
         children: [
-          foodField(foodController),
+          foodValuePicker(foodController),
           Align(
               alignment: Alignment.centerLeft,
-              child: dateSelectorWidget(context, dateSelected,
+              child: datePicker(context, dateSelected,
                   dayPickedCallBack, foodPageAppBarColor)),
           saveFoodBtn(context, foodFormKey, foodController, dateSelected)
         ],

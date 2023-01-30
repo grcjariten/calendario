@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../utils/settings.dart';
 
-TextFormField foodField(TextEditingController foodController) {
+TextFormField foodValuePicker(TextEditingController foodController) {
   return TextFormField(
     validator: (value) {
       if(value == null || value.isEmpty) {
@@ -17,7 +17,26 @@ TextFormField foodField(TextEditingController foodController) {
   );
 }
 
-Row dateSelectorWidget(BuildContext context, DateTime dateSelected, Function
+Column moodStoolValuePicker(double value, Function callBack, Color
+sliderColor) {
+  double number = value;
+  return Column(
+    children: [
+      Text(number.toString()),
+      Slider(
+          min: 1,
+          max: 10,
+          divisions: 10,
+          value: number,
+          onChanged: (newValue) {
+            callBack;
+          })
+    ],
+  );
+}
+
+
+Row datePicker(BuildContext context, DateTime dateSelected, Function
 callback, Color buttonColor) {
   DateTime? newDateSelected;
 

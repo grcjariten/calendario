@@ -24,7 +24,7 @@ class _MoodFormPageState extends State<MoodFormPage> {
   Form moodForm(BuildContext context, DateTime dateSelected,
       dayPickedCallBack) {
     GlobalKey<FormState> moodFormKey = GlobalKey<FormState>();
-    TextEditingController moodSelected;
+    int moodSelected;
 
 
     return Form(
@@ -34,7 +34,7 @@ class _MoodFormPageState extends State<MoodFormPage> {
           // moodSelector(moodSelected), //TODO: Work on how to select a value
           Align(
               alignment: Alignment.centerLeft,
-              child: dateSelectorWidget(context, dateSelected,
+              child: datePicker(context, dateSelected,
                 dayPickedCallBack, moodPageAppBarColor)),
           // saveButton(context, moodFormKey, moodSelected, dateSelected)
           // TODO: Work on saveButton first.
