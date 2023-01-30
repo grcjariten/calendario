@@ -26,24 +26,28 @@ FloatingActionButton insertFloating(DateTime dateSelected, ObjectType type, Buil
       heroTag: "moodTag",
         backgroundColor: insertFloatingMoodColor,
         child: const Text("+\nMood", textAlign: TextAlign.center,),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => MoodFormPage(dateSelected: dateSelected))).then((_) => refreshCallBack
-          );
+        onPressed: () async {
+          Item? item = await Navigator.push(context,
+              MaterialPageRoute(builder: (context) =>
+                  MoodFormPage
+                    (dateSelected: dateSelected)));
+          refreshCallBack(item);
+        });
         }
-    );
-  }
+
+
   stoolActionButton() {
     return FloatingActionButton(
         heroTag: "stoolTag",
         backgroundColor: insertFloatingStoolColor,
         child: const Text("+\nStool", textAlign: TextAlign.center,),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => StoolFormPage(dateSelected: dateSelected,))).then((_) => refreshCallBack()
-          );
-        }
-    );
+        onPressed: () async {
+          Item? item = await Navigator.push(context,
+              MaterialPageRoute(builder: (context) =>
+                  StoolFormPage
+                    (dateSelected: dateSelected,)));
+          refreshCallBack(item);
+        }  );
   }
   if(type == ObjectType.food) {
       return foodActionButton();

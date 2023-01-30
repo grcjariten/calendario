@@ -1,3 +1,4 @@
+import 'package:calendario/form_ui/save_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:calendario/utils/settings.dart';
 import 'package:intl/intl.dart';
@@ -44,8 +45,7 @@ class _StoolFormPageState extends State<StoolFormPage> {
               alignment: Alignment.centerLeft,
               child: datePicker(context, dateSelected,
                   dayPickedCallBack, stoolPageAppBarColor)),
-          // saveButton(context, moodFormKey, moodSelected, dateSelected)
-          // TODO: Work on saveButton first.
+          saveStoolBtn(context, stoolFormKey, stoolSelected.toInt(), dateSelected)
         ],
 
       ),
