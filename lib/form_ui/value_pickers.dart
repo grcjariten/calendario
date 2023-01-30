@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../utils/settings.dart';
 
+TextFormField foodField(TextEditingController foodController) {
+  return TextFormField(
+    validator: (value) {
+      if(value == null || value.isEmpty) {
+        return "Please enter a food here";
+      }
+      return null;
+    },
+    controller: foodController,
+    decoration: const InputDecoration(
+        hintText: "Enter a food"
+    ),
+  );
+}
+
 Row dateSelectorWidget(BuildContext context, DateTime dateSelected,Function callback) {
   DateTime? newDateSelected;
 

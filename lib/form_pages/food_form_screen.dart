@@ -1,9 +1,8 @@
-import 'package:calendario/utils/database_helper.dart';
+import 'package:calendario/form_ui/save_buttons.dart';
 import 'package:intl/intl.dart';
-import '../form_ui/foodform_widgets.dart';
 import 'package:flutter/material.dart';
 import '../utils/settings.dart';
-import 'package:calendario/form_ui/date_selector.dart';
+import 'package:calendario/form_ui/value_pickers.dart';
 
 class FoodFormPage extends StatefulWidget {
   const FoodFormPage({Key? key, required this.dateSelected}) : super(key: key);
@@ -36,7 +35,7 @@ class _FoodFormPageState extends State<FoodFormPage> {
           Align(
               alignment: Alignment.centerLeft,
               child: dateSelectorWidget(context, dateSelected, dayPickedCallBack)),
-          saveButton(context, foodFormKey, foodController, dateSelected)
+          saveFoodBtn(context, foodFormKey, foodController, dateSelected)
         ],
 
       ),
