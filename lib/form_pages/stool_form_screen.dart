@@ -37,7 +37,7 @@ class _StoolFormPageState extends State<StoolFormPage> {
       key: stoolFormKey,
       child: Column(
         children: [
-          Text(stoolSelected.toInt().toString()),
+          Text("Value selected: ${stoolSelected.toInt().toString()}"),
           moodStoolValuePicker(stoolSelected, _sliderCallBack,
               stoolPageAppBarColor),
           Align(

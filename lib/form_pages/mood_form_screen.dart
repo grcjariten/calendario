@@ -37,7 +37,7 @@ class _MoodFormPageState extends State<MoodFormPage> {
       key: moodFormKey,
       child: Column(
         children: [
-          Text(moodSelected.toInt().toString()),
+          Text("Value selected: ${moodSelected.toInt().toString()}"),
           moodStoolValuePicker(moodSelected, _sliderCallBack,
               moodPageAppBarColor),
           Align(
