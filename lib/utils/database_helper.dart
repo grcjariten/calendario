@@ -16,10 +16,10 @@ class DatabaseHelper {
             'CREATE TABLE foods(id INTEGER PRIMARY KEY, foodValue TEXT, date TEXT)'
         );
         db.execute(
-            'CREATE TABLE moods(id INTEGER PRIMARY KEY, moodValue INTEGER, date TEXT)'
+            'CREATE TABLE moods(id INTEGER, moodValue INTEGER, date TEXT PRIMARY KEY)'
         );
         db.execute(
-            'CREATE TABLE stools(date TEXT PRIMARY KEY, id INTEGER, stoolValue INTEGER)'
+            'CREATE TABLE stools(id INTEGER PRIMARY KEY, stoolValue INTEGER, date TEXT)'
         );
       },
       version: 1,
@@ -91,11 +91,12 @@ class DatabaseHelper {
         'stools', stool.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace
     );
-    print("New Stool:${stool.stoolValue} was successfully inserted in the "
+
+    print("New Stool:${stool.stoolValue}${stool.dateTime}${stool.id} was "
+        "successfully inserted in the "
         "db!");
     return result;
   }
-
 
 
 }

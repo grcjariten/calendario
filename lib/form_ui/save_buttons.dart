@@ -98,7 +98,8 @@ ElevatedButton saveStoolBtn(
         db.insertStool(newStool).then((id) {
           newStool.id = id;
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("New Data saved! id: $id")));
+              .showSnackBar(SnackBar(content: Text("New Stool saved! id: "
+              "$id")));
         });
 
         //Generating a new Item to pop back
