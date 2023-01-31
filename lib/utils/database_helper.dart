@@ -63,6 +63,8 @@ class DatabaseHelper {
     });
   }
   Future<int> insertMood(Mood mood) async {
+    //TODO: Find a way to edit an item if it exists and insert a new one if
+    // it doesn't.
     final Database db = await initDb();
     final List<Mood> moods = await fetchMoods();
     late Mood newMood;
