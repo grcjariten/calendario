@@ -20,7 +20,7 @@ class Food {
   Map<String, dynamic> toMap() {
     return {
       "foodValue" : foodValue,
-      "dateTime" : dateTime.toString(),
+      "date" : dateTime.toString(),
       "id" : id,
     };
   }
@@ -41,7 +41,7 @@ class Stool {
   Map<String, dynamic> toMap() {
     return {
       "stoolValue" : stoolValue,
-      "dateTime" : dateTime.toString(),
+      "date" : dateTime.toString(),
       "id" : id,
     };
   }
@@ -63,7 +63,7 @@ class Mood {
   Map<String, dynamic> toMap() {
     return {
       "moodValue" : moodValue,
-      "dateTime" : dateTime.toString(),
+      "date" : dateTime.toString(),
       "id" : id,
     };
   }

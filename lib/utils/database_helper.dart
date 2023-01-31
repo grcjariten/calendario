@@ -13,13 +13,13 @@ class DatabaseHelper {
       join( path, "events_database.db"),
       onCreate: (db, int version) {
         db.execute(
-            'CREATE TABLE foods(id INTEGER PRIMARY KEY, foodValue TEXT, datetime TEXT)'
+            'CREATE TABLE foods(id INTEGER PRIMARY KEY, foodValue TEXT, date TEXT)'
         );
         db.execute(
-            'CREATE TABLE moods(id INTEGER PRIMARY KEY, moodValue INTEGER, datetime TEXT)'
+            'CREATE TABLE moods(id INTEGER PRIMARY KEY, moodValue INTEGER, date TEXT)'
         );
         db.execute(
-            'CREATE TABLE stools(id INTEGER PRIMARY KEY, stoolValue INTEGER, datetime TEXT)'
+            'CREATE TABLE stools(date TEXT PRIMARY KEY, id INTEGER, stoolValue INTEGER)'
         );
       },
       version: 1,
@@ -29,11 +29,11 @@ class DatabaseHelper {
   Future<List<Food>> fetchFoods() async {
     final Database db = await initDb();
     final List<Map<String, dynamic>> maps = await db.query('foods');
-    
+
     return List.generate(maps.length, (i) {
       return Food(
         maps[i]['foodValue'],
-        DateTime.parse(maps[i]['datetime']),
+        DateTime.parse(maps[i]['date']),
         maps[i]['id'],
       );
     });
@@ -56,13 +56,14 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) {
       return Mood(
         maps[i]['moodValue'],
-        DateTime.parse(maps[i]['datetime']),
+        DateTime.parse(maps[i]['date']),
         maps[i]['id'],
       );
     });
   }
   Future<int> insertMood(Mood mood) async {
     final Database db = await initDb();
+
     int result = await db.insert(
         'moods', mood.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace
@@ -79,7 +80,7 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) {
       return Stool(
         maps[i]['stoolValue'],
-        DateTime.parse(maps[i]['datetime']),
+        DateTime.parse(maps[i]['date']),
         maps[i]['id'],
       );
     });

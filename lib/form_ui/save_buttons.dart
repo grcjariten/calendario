@@ -47,19 +47,33 @@ ElevatedButton saveMoodBtn(
         backgroundColor: MaterialStateProperty.all(Colors.blueGrey)),
     child: const Text("Save"),
 
-    onPressed: () {
+    onPressed: () async {
       if(formKey.currentState!.validate()) {
-        final newMood = Mood(moodValue, dateSelected);
-        //Inserting a new Mood
-        db.insertMood(newMood).then((id) {
-          newMood.id = id;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("New Data saved! id: $id")));
-        });
 
-        //Generating a new Item to pop back
-        final itemPopped = Item(newMood, newMood.moodValue.toString(), moodColor);
-        Navigator.pop(context, itemPopped);
+        //Inserting a new Mood
+        final moods = await db.fetchMoods();
+        for (var element in moods) {
+          if(element.dateTime == dateSelected) {
+            print("dateTime ${element.dateTime} è uguale a dateSelected $dateSelected");
+            final newMood = Mood(moodValue, dateSelected, element.id);
+            db.insertMood(newMood).then((id) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("Mood by id: "
+                  "${element.id} was replaced")));
+            });
+          } else {
+
+          }
+        }
+        // db.insertMood(newMood).then((id) {
+        //   newMood.id = id;
+        //   ScaffoldMessenger.of(context)
+        //       .showSnackBar(SnackBar(content: Text("New Data saved! id: $id")));
+        // });
+
+        // //Generating a new Item to pop back
+        // final itemPopped = Item(newMood, newMood.moodValue.toString(), moodColor);
+        // Navigator.pop(context, itemPopped);
       }
     },
   );
