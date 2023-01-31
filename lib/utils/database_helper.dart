@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/widgets.dart';
@@ -63,11 +64,26 @@ class DatabaseHelper {
   }
   Future<int> insertMood(Mood mood) async {
     final Database db = await initDb();
-
-    int result = await db.insert(
-        'moods', mood.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace
-    );
+    final List<Mood> moods = await fetchMoods();
+    late Mood newMood;
+    late int result;
+    // moods[moods.indexWhere((element) => element.dateTime == dateTime)];
+    for (var element in moods) {
+      print("element: ${element.dateTime}");
+      if(!(element.dateTime == mood.dateTime)) {
+        print("found no items");
+        newMood = Mood(mood.moodValue, element.dateTime);
+        result = await db.insert(
+            'moods', newMood.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.replace);
+      } else if(element.dateTime == mood.dateTime){
+        print("found an item!");
+        newMood = Mood(mood.moodValue, element.dateTime, element.id);
+        result = await db.insert(
+            'moods', newMood.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.replace);
+      }
+    }
     print("New Mood:${mood.moodValue} was successfully inserted in the "
         "db!");
     return result;
