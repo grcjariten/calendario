@@ -40,7 +40,22 @@ class _MyHomePageState extends State<MyHomePage> {
     _focusedDay = newMonth;
   }
 
-  _newItemCallBack(Item? newItem) {
+  _newItemCallBack(Item? newItem, [bool? moodFound]) {
+    if(moodFound != null && moodFound==true) {
+      //Mood with the same date already exist and was found in the database
+      Object? newObject = newItem;
+      if(newObject is Mood) {
+        Mood newMood = newObject;
+        for (var listItem in items) {
+          Object? listObject;
+          if(listObject is Mood) {
+           Mood moodItem = listObject;
+           if(moodItem.dateTime == newMood.dateTime) {
+
+           }
+          }
+        }}
+    }
     _onDaySelectedCallback(_selectedDay, _focusedDay);
     if(newItem != null) {
       setState(() {
@@ -51,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return;
     }
   }
+
 
 
 

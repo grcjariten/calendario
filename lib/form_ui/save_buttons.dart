@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:calendario/utils/objects.dart';
 import 'package:calendario/utils/database_helper.dart';
 import 'package:calendario/utils/settings.dart';
+import 'package:sqflite/sqlite_api.dart';
 
 ElevatedButton saveFoodBtn(
     BuildContext context,
@@ -41,23 +42,42 @@ ElevatedButton saveMoodBtn(
     int moodValue,
     DateTime dateSelected) {
   final db = DatabaseHelper();
+  late List<Mood> moods = [];
+  late Mood newMood;
+  bool found = false;
+  newMood = Mood(moodValue, dateSelected);
 
   return ElevatedButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.blueGrey)),
     child: const Text("Save"),
 
-    onPressed: () {
-      if(formKey.currentState!.validate()) {
-        final newMood = Mood(moodValue, dateSelected);
-        //Inserting a new Mood
-        db.insertMood(newMood).then((id) {
-          newMood.id = id;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("New Mood saved! id: "
-              "$id")));
-        });
+    onPressed: () async {
+      moods = await db.fetchMoods();
 
+      if(formKey.currentState!.validate()) {
+
+        for(var element in moods) {
+          if(element.dateTime== newMood.dateTime) {
+            found = true;
+            print("found is $found");
+            print("found item: Mood(valore passato: ${element.moodValue}, data "
+                "fetchata: "
+                "${element.dateTime}, id fetchato: ${element.id}");
+            newMood = Mood(newMood.moodValue, element.dateTime, element.id);
+            db.updateMood(newMood);
+            break;
+          }
+        }
+        if(!found) {
+          newMood = Mood(newMood.moodValue, newMood.dateTime);
+          await db.insertMood(newMood).then((id) {
+            newMood.id = id;
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("New Mood saved! id: "
+                "$id")));
+          });
+        }
         //Generating a new Item to pop back
         final itemPopped = Item(newMood, newMood.moodValue.toString(),
             moodColor);
